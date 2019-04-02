@@ -77,3 +77,7 @@ server.username=username
 server.password=password
 server.smtp.starttls.enable=false
 ```
+
+After you have clean started karaf, execute the following commands:
+`feature:repo-add mvn:gr.ioannis/myosgi-karaf-features/1.0.0/xml/features`
+`feature:install myosgi`

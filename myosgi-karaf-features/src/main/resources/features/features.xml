@@ -37,8 +37,3 @@
     </feature>
 
 </features>
-
-        <!--
-        feature:repo-add mvn:gr.ioannis/myosgi-karaf-features/1.0.0/xml/features
-        feature:install myosgi
-        -->
