@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>gr.ioannis</groupId>
+    <artifactId>myosgi-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>../myosgi-karaf-features</module>
+        <module>../myosgi-web</module>
+        <module>../myosgi-api</module>
+        <module>../myosgi-impl</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Java specs -->
+        <javax.el.version>2.2.4</javax.el.version>
+        <javax.persistence.version>2.1.1</javax.persistence.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <javax.transaction.version>1.2</javax.transaction.version>
+        <javax.inject.version>1</javax.inject.version>
+        <javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
+
+        <!-- OSGi / Karaf -->
+        <osgi.version>5.0.0</osgi.version>
+        <karaf.version>4.0.10</karaf.version>
+        <karaf.maven.plugin.version>4.0.10</karaf.maven.plugin.version>
+        <karaf.cxf.version>3.1.14</karaf.cxf.version>
+        <karaf.hibernate.version>4.3.6.Final</karaf.hibernate.version>
+        <karaf.hibernate.validator.version>5.0.3.Final</karaf.hibernate.validator.version>
+        <pax.cdi.version>0.12.0</pax.cdi.version>
+
+        <!-- Blueprint namespaces + versions -->
+        <blueprint.ns>v1.0.0</blueprint.ns>
+        <blueprint.cm>v1.1.0</blueprint.cm>
+        <blueprint.jpa>v2.0.0</blueprint.jpa>
+        <blueprint.tx>v2.0.0</blueprint.tx>
+
+        <!-- Maven plugins -->
+        <build-helper-maven-plugin.version>1.10</build-helper-maven-plugin.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+        <blueprint.maven.plugin>1.4.0</blueprint.maven.plugin>
+        <maven-bundle-plugin.version>3.2.0</maven-bundle-plugin.version>
+        <maven-install-plugin.version>2.4</maven-install-plugin.version>
+
+        <!-- QLACK2 version -->
+        <qlack2.version>2.3.11-SNAPSHOT</qlack2.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Global configuration for the compiler -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <showDeprecation>true</showDeprecation>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <!-- Global configuration for the OSGi bundle plugin -->
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle-plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <instructions>
+                            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                            <Bundle-Name>${project.name}</Bundle-Name>
+                            <Bundle-Version>${project.version}</Bundle-Version>
+                            <_removeheaders>Import-Service,Export-Service,Require-Capability</_removeheaders>
+                        </instructions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

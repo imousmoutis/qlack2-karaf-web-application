@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/${blueprint.ns}"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/${blueprint.cm}"
+           xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs">
+
+    <jaxrs:server id="IoannisServer" address="/ioannis">
+        <jaxrs:serviceBeans>
+            <ref component-id="ioannisResource"/>
+        </jaxrs:serviceBeans>
+        <!--<jaxrs:providers>
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+        </jaxrs:providers>-->
+    </jaxrs:server>
+
+</blueprint>

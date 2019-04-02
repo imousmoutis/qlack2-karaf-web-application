@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>gr.ioannis</groupId>
+        <artifactId>myosgi-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../myosgi-parent</relativePath>
+    </parent>
+
+    <artifactId>myosgi-web</artifactId>
+    <packaging>bundle</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.eurodyn.qlack2.util</groupId>
+            <artifactId>qlack2-util-rest</artifactId>
+            <version>${qlack2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>gr.ioannis</groupId>
+            <artifactId>myosgi-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>${javax.inject.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.cdi</groupId>
+            <artifactId>pax-cdi-api</artifactId>
+            <version>${pax.cdi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>${javax.ws.rs-api.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.aries.blueprint</groupId>
+                <artifactId>blueprint-maven-plugin</artifactId>
+                <version>${blueprint.maven.plugin}</version>
+                <configuration>
+                    <scanPaths>
+                        <scanPath>gr.ioannis.myosgi.web</scanPath>
+                    </scanPaths>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>blueprint-generate</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-Description>MYOSGI :: web</Bundle-Description>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.png</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.png</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>
